@@ -32,6 +32,7 @@ sudo ufw status verbose
 
 
 systemctl enable dnsdist --now
+systemctl restart dnsdist 
 
 fi
 
