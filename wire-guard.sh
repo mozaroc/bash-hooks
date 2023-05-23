@@ -1,3 +1,9 @@
+#!/bin/bash
+
+set -xe
+
+sudo sed -i 's/#$nrconf{restart} = '"'"'i'"'"';/$nrconf{restart} = '"'"'a'"'"';/g' /etc/needrestart/needrestart.conf
+
 if [[ -z $1 ]];
 then 
     echo "Please enter server FQDN"
