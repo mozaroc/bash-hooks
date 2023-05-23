@@ -22,6 +22,15 @@ setServerPolicy(firstAvailable)
 addDOHLocal('0.0.0.0', '/etc/letsencrypt/live/$1/fullchain.pem', '/etc/letsencrypt/live/$1/privkey.pem')
 EOF
 
+
+sudo ufw allow 443/tcp
+
+echo y | ufw enable
+
+sudo ufw status verbose
+
+
+
 systemctl enable dnsdist --now
 
 fi
