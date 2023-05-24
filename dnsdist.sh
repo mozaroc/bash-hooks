@@ -34,5 +34,14 @@ sudo ufw status verbose
 systemctl enable dnsdist --now
 systemctl restart dnsdist 
 
+mkdir -p /etc/letsencrypt/renewal-hooks/deploy
+cat <<EOF > /etc/letsencrypt/renewal-hooks/deploy/restart-dnsdist.sh
+#!/bin/sh
+systemctl restart dnsdist
+EOF
+chmod +x /etc/letsencrypt/renewal-hooks/deploy/restart-dnsdist.sh
+
+
+
 fi
 

@@ -120,4 +120,12 @@ EOF
 
 systemctl enable wg-dash --now
 
+mkdir -p /etc/letsencrypt/renewal-hooks/deploy
+cat <<EOF > /etc/letsencrypt/renewal-hooks/deploy/restart-wg-dash.sh
+#!/bin/sh
+systemctl restart wg-dash
+EOF
+chmod +x /etc/letsencrypt/renewal-hooks/deploy/restart-wg-dash.sh
+
+
 fi
