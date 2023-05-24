@@ -8,7 +8,7 @@ if [[ -z $1 ]];
 then
     echo "Please enter server FQDN"
 else
-
+apt-get update
 apt-get -y install dnsdist acl
 setfacl -R -m u:_dnsdist:rx /etc/letsencrypt/
 
