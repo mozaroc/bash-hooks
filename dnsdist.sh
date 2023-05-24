@@ -18,7 +18,13 @@ cat << EOF | sudo tee "/etc/dnsdist/dnsdist.conf"
 setACL('0.0.0.0/0')
 newServer({address="1.1.1.1", qps=1})
 newServer({address="8.8.8.8", qps=1})
-setServerPolicy(firstAvailable)
+newServer({address="9.9.9.9", qps=1})
+newServer({address="208.67.222.222", qps=1})
+newServer({address="185.228.168.9", qps=1})
+newServer({address="76.76.19.19", qps=1})
+newServer({address="94.140.14.14", qps=1})
+setServerPolicy(wrandom)
+
 addDOHLocal('0.0.0.0', '/etc/letsencrypt/live/$1/fullchain.pem', '/etc/letsencrypt/live/$1/privkey.pem')
 EOF
 
