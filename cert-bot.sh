@@ -9,6 +9,7 @@ then
     echo "Please enter server FQDN"
 else
     echo "FQDN is $1"
+    apt-get update
     ufw disable
     snap install core; sudo snap refresh core
     snap install --classic certbot
