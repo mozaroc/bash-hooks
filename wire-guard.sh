@@ -86,6 +86,7 @@ echo
 sudo ufw allow 10086/tcp
 
 sudo ufw allow ${PORT}/udp
+sudo ufw allow 443/tcp
 
 sudo ufw allow 22/tcp # might want to keep ssh open ;-)
 
