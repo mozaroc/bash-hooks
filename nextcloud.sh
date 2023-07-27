@@ -2,6 +2,7 @@
 set -xe
 
 cd /
+apt update
 
 sed -i 's/#$nrconf{restart} = '"'"'i'"'"';/$nrconf{restart} = '"'"'a'"'"';/g' /etc/needrestart/needrestart.conf
 
