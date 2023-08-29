@@ -2,8 +2,8 @@
 
 UI_PORT=$(shuf -i 50000-65535 -n1)
 HTTP_PORT=$(shuf -i 50000-65535 -n1)
-MAIL=($echo $RANDOM | base64 | head -c 20 |tr '[:upper:]' '[:lower:]'; echo)
-DOMAIN=($echo $RANDOM | base64 | head -c 20 |tr '[:upper:]' '[:lower:]'; echo)
+MAIL=$(echo $RANDOM | base64 | head -c 20 |tr '[:upper:]' '[:lower:]'; echo)
+DOMAIN=$(echo $RANDOM | base64 | head -c 20 |tr '[:upper:]' '[:lower:]'; echo)
 
 echo y | ufw reset
 
@@ -29,7 +29,7 @@ cat << EOF | sudo tee "/etc/caddy/Caddyfile"
     # auto_https will create redirects for https://{host}:8443 instead of https://{host}
     # https redirects are added manually in the http://:80 block
     auto_https disable_redirects
-    https_port HTTP_PORT
+    https_port ${HTTP_PORT}
     http_port  10087
     https_port 443
     http_port 80
@@ -44,7 +44,7 @@ cat << EOF | sudo tee "/etc/caddy/Caddyfile"
 
 }
 
-https://{$IP}:HTTP_PORT {
+https://{$IP}:${HTTP_PORT} {
   reverse_proxy localhost:${UI_PORT}
   tls internal {
     on_demand
