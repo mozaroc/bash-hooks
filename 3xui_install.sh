@@ -52,8 +52,8 @@ https://{$IP}:${HTTP_PORT} {
 }
 
 # Match only host names and not ip-addresses:
-https://*.*:HTTP_PORT,
-https://*.*.*:HTTP_PORT {
+https://*.*:${HTTP_PORT},
+https://*.*.*:${HTTP_PORT} {
 
     reverse_proxy localhost:${UI_PORT}
     tls {
