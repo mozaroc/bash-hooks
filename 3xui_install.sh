@@ -2,8 +2,8 @@
 
 UI_PORT=$(shuf -i 50000-65535 -n1)
 HTTP_PORT=$(shuf -i 50000-65535 -n1)
-MAIL=$(echo $RANDOM | base64 | head -c 20 |tr '[:upper:]' '[:lower:]'; echo)
-DOMAIN=$(echo $RANDOM | base64 | head -c 20 |tr '[:upper:]' '[:lower:]'; echo)
+MAIL=$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 10 | head -n 1)
+DOMAIN=$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 10 | head -n 1)
 
 echo y | ufw reset
 
