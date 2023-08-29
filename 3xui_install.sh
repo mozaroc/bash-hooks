@@ -44,7 +44,7 @@ cat << EOF | sudo tee "/etc/caddy/Caddyfile"
 
 }
 
-https://\{\$IP\}:${HTTP_PORT} {
+https://{\$IP}:${HTTP_PORT} {
   reverse_proxy localhost:${UI_PORT}
   tls internal {
     on_demand
