@@ -5,8 +5,8 @@ UI_PORT=$(shuf -i 50000-65535 -n1)
 echo n | bash <(curl -Ls https://raw.githubusercontent.com/mhsanaei/3x-ui/master/install.sh)
 /usr/local/x-ui/x-ui setting -username admin -password admin -port ${UI_PORT}
 
-wget https://github.com/caddyserver/caddy/releases/download/v2.7.4/caddy_2.7.4_linux_amd64.deb
-dpkg -i caddy_2.7.4_linux_amd64.deb
+wget https://github.com/caddyserver/caddy/releases/download/v2.6.4/caddy_2.6.4_linux_amd64.deb
+dpkg -i caddy_2.6.4_linux_amd64.deb
 
 
 
