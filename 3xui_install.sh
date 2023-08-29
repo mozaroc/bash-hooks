@@ -1,9 +1,15 @@
 #!/bin/bash
 
+red='\033[0;31m'
+green='\033[0;32m'
+yellow='\033[0;33m'
+plain='\033[0m'
+
 UI_PORT=$(shuf -i 50000-65535 -n1)
 HTTP_PORT=$(shuf -i 50000-65535 -n1)
 MAIL=$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 10 | head -n 1)
 DOMAIN=$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 10 | head -n 1)
+MAIN_IP=$(hostname --ip-address)
 
 echo y | ufw reset
 
@@ -74,4 +80,14 @@ http://:10087 {
 EOF
 
 systemctl restart caddy
+
+echo -e "${green}x-ui ${plain} installation finished, it is running now..."
+echo -e "###############################################"
+echo -e "${green}username: admin${plain}"
+echo -e "${green}password: admin${plain}"
+echo -e "###############################################"
+echo -e "The panel is available at ${red}https://${MAIN_IP}:${HTTP_PORT}${plain}"
+echo -e "###############################################"
+
+
 
