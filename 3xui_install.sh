@@ -16,7 +16,6 @@ echo y | ufw reset
 ufw allow ${UI_PORT}/tcp
 ufw allow ${HTTP_PORT}/tcp
 ufw allow 443/tcp
-ufw allow 2096/tcp
 ufw allow 80/tcp
 ufw allow 22/tcp
 
