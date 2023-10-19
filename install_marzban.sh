@@ -124,25 +124,15 @@ http://:10087 {
 
 EOF
 
-systemctl caddy restart
+systemctl restart caddy
 
 docker compose -f "$APP_DIR/docker-compose.yml" -p marzban up -d --remove-orphans
 
 
 colorized_echo green "Marzban installation finished, it is running now..."
 echo -e "###############################################"
-colorized_echo "username: admin"
-colorized_echo "password: ${ADMIN_PASS}"
+colorized_echo green "username: admin"
+colorized_echo green "password: ${ADMIN_PASS}"
 echo -e "###############################################"
-colorized_echo green "The panel is available at https://${DOMAIN}:${HTTP_PORT}"
+colorized_echo green "The panel is available at https://${DOMAIN}:${HTTP_PORT}/dashboard"
 echo -e "###############################################"
-
-
-
-
-
-
-
-
-
-
