@@ -2,12 +2,12 @@
 set -e
 
 ufw disable
+APP_NAME="marzban"
 INSTALL_DIR="/opt"
 APP_DIR="$INSTALL_DIR/$APP_NAME"
 DATA_DIR="/var/lib/$APP_NAME"
 HTTP_PORT=$(shuf -i 50000-65535 -n1)
 COMPOSE_FILE="$APP_DIR/docker-compose.yml"
-APP_NAME="marzban"
 
 MAIL=$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 10 | head -n 1)
 ADMIN_PASS=$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 10 | head -n 1)
@@ -124,6 +124,18 @@ http://:10087 {
 
 EOF
 
+systemctl caddy restart
+
+docker compose -f "$APP_DIR/docker-compose.yml" -p marzban up -d --remove-orphans
+
+
+colorized_echo green "Marzban installation finished, it is running now..."
+echo -e "###############################################"
+colorized_echo "username: admin"
+colorized_echo "password: ${ADMIN_PASS}"
+echo -e "###############################################"
+colorized_echo green "The panel is available at https://${DOMAIN}:${HTTP_PORT}"
+echo -e "###############################################"
 
 
 
