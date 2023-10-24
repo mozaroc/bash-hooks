@@ -62,7 +62,7 @@ SUDO_USERNAME = "admin"
 SUDO_PASSWORD = "${ADMIN_PASS}"
 XRAY_JSON = "/var/lib/marzban/xray_config.json"
 SQLALCHEMY_DATABASE_URL = "sqlite:////var/lib/marzban/db.sqlite3"
-XRAY_SUBSCRIPTION_URL_PREFIX = "https://${DOMAIN}${HTTP_PORT}"
+XRAY_SUBSCRIPTION_URL_PREFIX = "https://${DOMAIN}:${HTTP_PORT}"
 EOF
 
 colorized_echo green "File saved in $APP_DIR/.env"
