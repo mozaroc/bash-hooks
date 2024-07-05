@@ -24,6 +24,7 @@ ufw status verbose
 
 echo n | bash <(curl -Ls https://raw.githubusercontent.com/mhsanaei/3x-ui/master/install.sh)
 /usr/local/x-ui/x-ui setting -username admin -password admin -port ${UI_PORT}
+WEB_PATH=$(x-ui settings | grep webBasePath | cut -d " " -f 2-)
 
 wget https://github.com/caddyserver/caddy/releases/download/v2.6.4/caddy_2.6.4_linux_amd64.deb
 dpkg -i caddy_2.6.4_linux_amd64.deb
@@ -88,7 +89,7 @@ echo -e "###############################################"
 echo -e "${green}username: admin${plain}"
 echo -e "${green}password: admin${plain}"
 echo -e "###############################################"
-echo -e "The panel is available at ${red}https://${MAIN_IP}:${HTTP_PORT}${plain}"
+echo -e "The panel is available at ${red}https://${MAIN_IP}:${HTTP_PORT}${plain}${WEB_PATH}"
 echo -e "###############################################"
 
 
