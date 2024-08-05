@@ -1,35 +1,7 @@
 #!/bin/bash
 
-red='\033[0;31m'
-green='\033[0;32m'
-yellow='\033[0;33m'
-plain='\033[0m'
-
-UI_PORT=$(shuf -i 50000-65535 -n1)
-HTTP_PORT=$(shuf -i 50000-65535 -n1)
-MAIL=$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 10 | head -n 1)
-DOMAIN=$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 10 | head -n 1)
-MAIN_IP=$(hostname --ip-address)
-
-echo y | ufw reset
-
-ufw allow ${UI_PORT}/tcp
-ufw allow ${HTTP_PORT}/tcp
-ufw allow 443/tcp
-ufw allow 80/tcp
-ufw allow 22/tcp
-
-echo y | ufw enable
-ufw status verbose
-
-echo n | bash <(curl -Ls https://raw.githubusercontent.com/mhsanaei/3x-ui/master/install.sh)
-/usr/local/x-ui/x-ui setting -username admin -password admin -port ${UI_PORT}
-WEB_PATH=$(x-ui settings | grep webBasePath | cut -d " " -f 2-)
-
 wget https://github.com/caddyserver/caddy/releases/download/v2.6.4/caddy_2.6.4_linux_amd64.deb
 dpkg -i caddy_2.6.4_linux_amd64.deb
-
-
 
 rm -rf /etc/caddy/Caddyfile
 cat << EOF | sudo tee "/etc/caddy/Caddyfile" 
@@ -84,10 +56,7 @@ EOF
 
 systemctl restart caddy
 
-echo -e "${green}x-ui ${plain} installation finished, it is running now..."
 echo -e "###############################################"
-echo -e "${green}username: admin${plain}"
-echo -e "${green}password: admin${plain}"
 echo -e "###############################################"
 echo -e "The panel is available at ${red}https://${MAIN_IP}:${HTTP_PORT}${plain}${WEB_PATH}"
 echo -e "###############################################"
